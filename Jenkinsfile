@@ -1,11 +1,10 @@
-node {
-    stage('Declarations') {
-        echo "Running on branch ${env.BRANCH_NAME}"
-    }
-    stage('Build') {
-        echo 'Installing npm modules...'
-    }
-    stage('Deploy') {
-        echo 'Deploying... nowhere.'
+pipeline {
+    agent { docker { image 'node:6.3' } }
+    stages {
+        stage("build") {
+            steps {
+                echo "Hello. Building branch: ${env.BRANCH_NAME}"
+            }
+        }
     }
 }
