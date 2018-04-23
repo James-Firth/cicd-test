@@ -5,7 +5,10 @@ pipeline {
       steps {
         echo "Hello. Building branch: ${env.BRANCH_NAME}"
         nodejs(nodeJSInstallationName: 'Default') {
-            sh 'npm --version'
+            sh '''
+            export PATH=/sbin:/usr/sbin:/usr/bin:/usr/local/bin;
+            npm --version
+            '''
         }
       }
     }
