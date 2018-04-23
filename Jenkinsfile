@@ -7,7 +7,7 @@ pipeline {
         echo "Hello. Building branch: ${env.BRANCH_NAME}"
         nodejs('Default') {
             // some block
-            npm -h
+            sh 'npm --version'
         }
       }
     }
