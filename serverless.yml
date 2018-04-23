@@ -1,0 +1,20 @@
+service: james-jenkins-test
+
+provider:
+  name: aws
+  region: us-west-2
+  runtime: nodejs6.10
+
+plugins:
+  - serverless-offline
+
+functions:
+  api:
+    handler: handler.api
+    events:
+      - http:
+          path: /
+          method: any
+      - http:
+          path: /{proxy+}
+          method: any
