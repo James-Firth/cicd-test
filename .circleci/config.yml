@@ -3,14 +3,17 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 version: 2
 jobs:
-  test:
-    - run: npm test
   build:
     docker:
       - image: circleci/node:6.10
     steps:
       - checkout
       - run: echo "Building stuff"
+  test:
+    docker:
+      - image: circleci/node:6.10
+    steps:
+      - run: npm test
 workflows:
   version: 2
   simple-workflow:
