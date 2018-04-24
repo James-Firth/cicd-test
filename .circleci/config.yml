@@ -14,6 +14,7 @@ jobs:
     docker:
       - image: circleci/node:6.10
     steps:
+      - run: ls **
       - run: npm test
 workflows:
   version: 2
