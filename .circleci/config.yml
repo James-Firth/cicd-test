@@ -18,7 +18,6 @@ workflows:
       - deploy:
         requires:
           - hold
-
 jobs:
   # Pushes the deploy to AWS eventually
   deploy:
@@ -33,7 +32,8 @@ jobs:
   test:
     docker:
       - image: circleci/node:6.10
-    - run: npm test
+    steps:
+      - run:  npm test
 
   # NPM install dependencies
   build:
