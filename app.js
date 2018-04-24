@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
 app.use("/hello", function(req, res, next) {
-  res.send("world");
+  res.send("It worked!");
 });
 app.use("/users", users);
 
