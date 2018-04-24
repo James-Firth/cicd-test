@@ -4,20 +4,16 @@
 #
 version: 2
 jobs:
-  # Pushes the deploy to AWS eventually
   deploy:
     docker:
       - image: circleci/node:6.10
     steps:
       - run: sls deploy
-
   test:
     docker:
       - image: circleci/node:6.10
     steps:
       - run:  npm test
-
-  # NPM install dependencies
   build:
     docker:
       - image: circleci/node:6.10
