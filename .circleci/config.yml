@@ -8,6 +8,8 @@ jobs:
       - image: circleci/node:6.10
     steps:
       - checkout
+      - run: which sls
+      - run: which serverless
       - run: sls deploy
   build:
     docker:
@@ -16,6 +18,8 @@ jobs:
       - checkout
       - run: sudo npm install -g serverless
       - run: npm install
+      - run: which sls
+      - run: which serverless
   test:
     docker:
       - image: circleci/node:6.10
