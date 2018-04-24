@@ -14,7 +14,8 @@ jobs:
     docker:
       - image: circleci/node:6.10
     steps:
-      - run: ls **
+      - run: pwd
+      - run: ls
       - run: npm test
 workflows:
   version: 2
@@ -27,4 +28,4 @@ workflows:
             - build
       - test:
           requires: # Does this seriously need to be double-indented?
-            - build
+            - hold
