@@ -4,6 +4,12 @@
 #
 # Force build?
 version: 2
+workflow:
+  version: 2
+  simple-workflow:
+    jobs:
+      - build
+
 jobs:
   build:
     docker: 
