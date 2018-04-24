@@ -2,8 +2,32 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
+workflows:
+  version: 2
+  build-test-and-approve:
+    jobs:
+      - build
+      - test:
+        requires:
+          - build
+      - hold:
+          type: approval
+          requires:
+            - test
+      - deploy:
+        requires:
+          - hold
+
 jobs:
+  deploy:
+    steps:
+      - run:
+        name: Deploy serverless express
+        command: |
+          sls deploy
+  test:
+    # run tests!
+    - run: npm test
   build:
     docker:
       # specify the version you desire here
@@ -31,10 +55,6 @@ jobs:
           command: |
             sudo npm i -g serverless
             npm install
-      # run tests!
-      - run: npm test
-
-      
       - save_cache:
           paths:
             - node_modules

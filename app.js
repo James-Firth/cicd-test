@@ -1,3 +1,15 @@
+// const express = require("express");
+// const app = express();
+
+// app.get("/", (request, response) => {
+//   response.send("Hello World!");
+// });
+// app.get("/hello", (request, response) => {
+//   response.send("World!");
+// });
+
+// module.exports = app;
+
 var express = require("express");
 var path = require("path");
 var favicon = require("serve-favicon");
