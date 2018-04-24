@@ -5,7 +5,7 @@
 # Force build?
 version: 2
 jobs:
-  firstjob:
+  build:
     docker: 
       - image: circleci/node:6.10
     steps:
