@@ -34,7 +34,8 @@ jobs:
           key: dependencies-cache-{{ checksum "package.json" }}
       - save_cache:
           paths:
-            - /usr/local/bin
+            - /usr/local/bin/sls
+            - /usr/local/bin/serverless
           key: james-test-12734891234
   test:
     docker:
