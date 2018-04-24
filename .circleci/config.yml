@@ -12,14 +12,9 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:6.10
-    working_directory: ~/repo
     steps:
       - checkout
-      - run:
-          name: Install Serverless CLI and dependencies
-          command: |
-            sudo npm i -g serverless
-            npm install
+      - run: echo "Building stuff"
 workflows:
   version: 2
   simple-workflow:
