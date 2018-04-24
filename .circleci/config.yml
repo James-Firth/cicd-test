@@ -3,32 +3,14 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-workflows:
-  version: 2
-  build-test-and-approve:
-    jobs:
-      - build
-      - test:
-        requires:
-          - build
-      - hold:
-          type: approval
-          requires:
-            - test
-      - deploy:
-        requires:
-          - hold
 jobs:
   # Pushes the deploy to AWS eventually
   deploy:
     docker:
       - image: circleci/node:6.10
     steps:
-      - run:
-        name: Deploy serverless express
-        command: |
-          sls deploy
-  # Run our tests!
+      - run: sls deploy
+
   test:
     docker:
       - image: circleci/node:6.10
@@ -47,5 +29,20 @@ jobs:
           command: |
             sudo npm i -g serverless
             npm install
+workflows:
+  version: 2
+  build-test-and-approve:
+    jobs:
+      - build
+      - test:
+        requires:
+          - build
+      - hold:
+          type: approval
+          requires:
+            - test
+      - deploy:
+        requires:
+          - hold
 
 
