@@ -14,7 +14,7 @@ jobs:
       - image: circleci/node:6.10
     steps:
       - checkout
-      - run: npm install -g serverless
+      - run: sudo npm install -g serverless
       - run: npm install
   test:
     docker:
