@@ -8,6 +8,14 @@ jobs:
       - image: circleci/node:6.10
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-cache
+      - restore_cache:
+          keys:
+            key: james-test-12734891234}
       - run: ls /usr/local/bin/
       - run: export PATH=$PATH:/usr/local/bin
       - run: which sls
@@ -20,8 +28,14 @@ jobs:
       - checkout
       - run: sudo npm install -g serverless
       - run: npm install
-      - run: which sls
-      - run: which serverless
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-cache-{{ checksum "package.json" }}
+      - save_cache:
+          paths:
+            - /usr/local/bin
+          key: james-test-12734891234
   test:
     docker:
       - image: circleci/node:6.10
