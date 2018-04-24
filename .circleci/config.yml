@@ -20,5 +20,5 @@ workflows:
     jobs:
       - build
       - test:
-        requires:
-          - build
+          requires: # Does this seriously need to be double-indented?
+            - build
