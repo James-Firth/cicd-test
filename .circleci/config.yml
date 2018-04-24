@@ -5,14 +5,32 @@
 # Force build?
 version: 2
 jobs:
+  deploy:
+    steps:
+      - run:
+        name: Deploy serverless express
+        command: |
+          sls deploy
+  test:
+    # run tests!
+    - run: npm test
   build:
-    docker: 
+    docker:
+      # specify the version you desire here
       - image: circleci/node:6.10
+    working_directory: ~/repo
     steps:
       - checkout
-      - run: echo "HEllo world"
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: |
+            sudo npm i -g serverless
+            npm install
 workflows:
   version: 2
   simple-workflow:
     jobs:
       - build
+      - test
+        requires:
+          - build
