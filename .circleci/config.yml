@@ -8,6 +8,8 @@ jobs:
       - image: circleci/node:6.10
     steps:
       - checkout
+      - run: ls /usr/local/bin/
+      - run: export PATH=$PATH:/usr/local/bin
       - run: which sls
       - run: which serverless
       - run: sls deploy
