@@ -15,7 +15,7 @@ jobs:
             - dependencies-cache
       - restore_cache:
           keys:
-            - james-test-12734891234
+            - npm-global-cache-{{ checksum "package.json" }}
       - run: npm config set prefix '~/.npm-global'
       - run: ls ~/.npm-global
       - run: which sls
@@ -37,7 +37,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.npm-global/
-          key: james-test-12734891234
+          key: npm-global-cache-{{ checksum "package.json" }}
   test:
     docker:
       - image: circleci/node:6.10
