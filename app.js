@@ -34,8 +34,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/hello', (req, res, next) => {
-  res.send('world');
+app.use('/travis', (req, res, next) => {
+  res.send('Hello from Travis!');
 });
 app.use('/users', users);
 
