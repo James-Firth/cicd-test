@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- node
+cache:
+  directories:
+    - node_modules
+install:
+  - npm install
+  - npm install -g serverless
+script:
+  - eslint .
+  - npm test
+deploy:
+  provider: script
+  script: 
+    - sls deploy
+  on:
+    branch: develop
