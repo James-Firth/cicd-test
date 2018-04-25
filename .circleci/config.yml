@@ -13,13 +13,7 @@ jobs:
             - dependencies-cache-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - dependencies-cache
-      - restore_cache:
-          keys:
-            - npm-global-cache-{{ checksum "package.json" }}
-      - run: npm config set prefix '~/.npm-global'
-      - run: ls ~/.npm-global
-      - run: which sls
-      - run: which serverless
+      - run: sudo npm install -g serverless
       - run: sls deploy
   build:
     docker:
@@ -28,17 +22,12 @@ jobs:
       - checkout
       - run: mkdir ~/.npm-global
       - run: npm config set prefix '~/.npm-global'
-      - run: sudo npm install -g serverless
       - run: npm install
       - save_cache:
           paths:
             - node_modules
           key: dependencies-cache-{{ checksum "package.json" }}
-      - save_cache:
-          paths:
-            - ~/.npm-global/
-          key: npm-global-cache-{{ checksum "package.json" }}
-  test:
+  test: # this will need dev installs. Doesn't need to cache though
     docker:
       - image: circleci/node:6.10
     steps:
