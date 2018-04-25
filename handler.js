@@ -1,5 +1,5 @@
-const awsServerlessExpress = require("aws-serverless-express");
-const app = require("./app");
+const awsServerlessExpress = require('aws-serverless-express');
+const app = require('./app');
 
 // TODO: see if the mime types are needed for all cases show in this example:
 // https://github.com/awslabs/aws-serverless-express/blob/master/example/lambda.js
