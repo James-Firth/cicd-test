@@ -13,6 +13,6 @@ script:
 deploy:
   provider: script
   script: 
-    - sls deploy
+    - sls deploy --verbose
   on:
     branch: develop
