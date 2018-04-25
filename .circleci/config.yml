@@ -16,8 +16,8 @@ jobs:
       - restore_cache:
           keys:
             - james-test-12734891234
-      - run: ls /usr/local/bin/
-      - run: export PATH=$PATH:/usr/local/bin
+      - run: npm config set prefix '~/.npm-global'
+      - run: ls ~/.npm-global
       - run: which sls
       - run: which serverless
       - run: sls deploy
@@ -26,6 +26,8 @@ jobs:
       - image: circleci/node:6.10
     steps:
       - checkout
+      - run: mkdir ~/.npm-global
+      - run: npm config set prefix '~/.npm-global'
       - run: sudo npm install -g serverless
       - run: npm install
       - save_cache:
@@ -34,8 +36,7 @@ jobs:
           key: dependencies-cache-{{ checksum "package.json" }}
       - save_cache:
           paths:
-            - /usr/local/bin/sls
-            - /usr/local/bin/serverless
+            - ~/.npm-global/
           key: james-test-12734891234
   test:
     docker:
