@@ -6,17 +6,17 @@ cache:
     - node_modules
 install:
   - npm install
-  - npm install -g serverless
 jobs:
   include:
     - script: eslint .
     - script: npm test
     - stage: deploy
       script: skip
+      install: npm install -g serverless
       deploy:
         skip_cleanup: true
         provider: script
         on:
-          branch: develop
+          branch: staging
         script: 
           - sls deploy --verbose
