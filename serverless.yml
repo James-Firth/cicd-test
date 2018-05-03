@@ -1,9 +1,4 @@
-service: james-circleci-test
-
-# Exclude unnecessary files.
-package:
-  exclude:
-  - .circleci/**
+service: travis-ci-test
 
 provider:
   name: aws
