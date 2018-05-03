@@ -20,8 +20,7 @@ jobs:
           branch: staging
         script: 
           - sls deploy --verbose
-      after_deploy:
-        - curl -X POST --data-urlencode "payload={\"channel\": \"#bots\", \"username\": \"Travis-Builder\", \"text\": \"James test deployed his projec to staging\", \"icon_emoji\": \":build_construction:\"}" $SLACK_WEBHOOK_URL
+        # After_deploy not working. Could use for slack notifications though
     - stage: deploy # Tag daily Release
         before_deploy:
           # Set up git user name and tag this commit
