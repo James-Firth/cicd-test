@@ -11,31 +11,27 @@ jobs:
     - script: eslint . 
     - script: npm test
     - stage: deploy
-      script: skip
+      script:
+        - sls package --package ./serverless_package
       install: npm install -g serverless
+      before_deploy:
+        # Set up git user name and tag this commit
+        - git config --local user.name "DailyBot"
+        - git config --local user.email "noreply@example.com"
+        - git tag "$(date +'%Y%m%d%_H%M%S')-$(git log --format=%h -1)"
       deploy:
         skip_cleanup: true
         provider: script
         on:
           branch: staging
         script: 
-          - sls deploy --verbose
+          - sls deploy --verbose --package ./serverless_package/travis-ci-test.zip
+      deploy:
+        on:
+          branch: staging
+        provider: releases
+        api_key: $GITHUB_OAUTH_TOKEN
+        file: ./serverless_package/travis-ci-test.zip
+        skip_cleanup: true
         after_deploy:
-          - curl -X POST --data-urlencode "payload={\"channel\": \"#bots\", \"username\": \"Travis-Builder\", \"text\": \"James test deployed his projec to staging\", \"icon_emoji\": \":build_construction:\"}" $SLACK_WEBHOOK_URL
-    - stage: deploy # Tag daily Release
-        before_deploy:
-          # Set up git user name and tag this commit
-          - git config --local user.name "DailyBot"
-          - git config --local user.email "noreply@example.com"
-          - git tag "$(date +'%Y%m%d%_H%M%S')-$(git log --format=%h -1)"
-        install:
-          - npm install -g serverless
-        script:
-          - sls package --package ./serverless_package
-        deploy:
-          on:
-            branch: staging
-          provider: releases
-          api_key: $GITHUB_OAUTH_TOKEN
-          file: ./serverless_package/travis-ci-test.zip
-          skip_cleanup: true
+          - 'curl -X POST --data-urlencode "payload={\"channel\": \"#bots\", \"username\": \"Travis-Builder\", \"text\": \"James test deployed his project to staging\", \"icon_emoji\": \":construction_worker:\"}" $SLACK_WEBHOOK_URL'
