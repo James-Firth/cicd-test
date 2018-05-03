@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+- node
+cache:
+  directories:
+    - node_modules
+install:
+  - npm install
+jobs:
+  include:
+    - script: eslint .
+    - script: npm test
+    - stage: deploy
+      script: skip
+      install: npm install -g serverless
+      deploy:
+        skip_cleanup: true
+        provider: script
+        on:
+          branch: staging
+        script: 
+          - sls deploy --verbose
