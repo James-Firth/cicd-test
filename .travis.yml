@@ -1,6 +1,9 @@
 language: node_js
 node_js:
-- node
+  - "6.10"
+sudo: required
+services:
+  - docker
 cache:
   directories:
     - node_modules
@@ -24,7 +27,9 @@ jobs:
         provider: script
         on:
           branch: staging
-        script: 
+        before_script:
+          - docker pull hello-world
+        script:
           - docker run hello-world
           - sls deploy --verbose --package ./serverless_package/travis-ci-test.zip
       deploy:
