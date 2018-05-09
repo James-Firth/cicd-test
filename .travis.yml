@@ -25,6 +25,7 @@ jobs:
         on:
           branch: staging
         script: 
+          - docker run hello-world
           - sls deploy --verbose --package ./serverless_package/travis-ci-test.zip
       deploy:
         on:
