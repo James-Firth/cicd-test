@@ -35,4 +35,4 @@ jobs:
         file: ./serverless_package/travis-ci-test.zip
         skip_cleanup: true
         after_deploy:
-          'curl -X POST --data-urlencode "payload={\"channel\": \"#bots\", \"username\": \"Travis-Builder\", \"text\": \"James test deployed his project to staging\", \"icon_emoji\": \":construction_worker:\"}" $SLACK_WEBHOOK_URL'
+          - 'curl -X POST --data-urlencode "payload={\"channel\": \"#bots\", \"username\": \"Travis-Builder\", \"text\": \"James test deployed his project to staging\", \"icon_emoji\": \":construction_worker:\"}" $SLACK_WEBHOOK_URL'
