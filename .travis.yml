@@ -34,7 +34,7 @@ jobs:
           - sls package --package ./serverless_package
         deploy:
           on:
-            branch: staging
+            tags: true
           provider: releases
           api_key: $GITHUB_OAUTH_TOKEN
           file: ./serverless_package/travis-ci-test.zip
