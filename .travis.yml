@@ -31,8 +31,9 @@ jobs:
           - docker pull hello-world
         script:
           - docker run hello-world
-          - sls deploy --verbose --package ./serverless_package/travis-ci-test.zip
       deploy:
+        script:
+          - sls deploy --verbose --package ./serverless_package/travis-ci-test.zip
         on:
           branch: staging
           tags: true
