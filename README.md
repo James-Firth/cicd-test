@@ -5,5 +5,5 @@ For testing CI/CD platforms
 ## Notes
 Trying out Codeship
 
-###  Changing this branch
-to see what happens with squash and merge
+###  Testing stuff
+I need to: see what happens with squash and merge
