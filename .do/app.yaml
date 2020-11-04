@@ -11,3 +11,5 @@ static_sites:
     output_dir: build
     #  index_document: index.html # defaults to index so not needed$
     build_command: yarn build
+    routes:
+      - path: /*
