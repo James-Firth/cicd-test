@@ -2,12 +2,12 @@ name: jamestest
 
 static_sites:
   - name: webapp
-  environment_slug: node-js
-  github:
-  repo: james-firth/cicd-test
-  branch: do-app-monorepo-deploy
-  deploy_on_push: true
-  source_dir: web-app
-  output_dir: build
- #  index_document: index.html # defaults to index so not needed$
+    environment_slug: node-js
+    github:
+    repo: james-firth/cicd-test
+    branch: do-app-monorepo-deploy
+    deploy_on_push: true
+    source_dir: web-app
+    output_dir: build
+    #  index_document: index.html # defaults to index so not needed$
     build_command: yarn build
