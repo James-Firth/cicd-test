@@ -1,7 +1,7 @@
 # cicd-test
 For testing CI/CD platforms
 
-HELLO
+HELLO WORLD
 
 ## Notes
 Trying out Codeship
