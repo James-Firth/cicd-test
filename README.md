@@ -2,5 +2,4 @@
 For testing CI/CD platforms
 
 
-## Notes
-Trying out Codeship
+using context not env var
