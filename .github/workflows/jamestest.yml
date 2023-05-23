@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Create status
         run: |
-          echo "https://api.github.com/repos/${{ github.repository }}/statuses/${ GITHUB_SHA }";
+          echo "github.sha: ${{ github.sha }} github: ${{github}}";
           curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${ GITHUB_SHA } \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
