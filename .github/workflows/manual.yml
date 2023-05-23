@@ -15,7 +15,9 @@ on:
         default: 'World'
         # Input has to be provided for the workflow to run
         required: true
-
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "greet"
@@ -25,6 +27,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Create status
+      run: |
+        echo "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.event.workflow_run.head_commit.id }}";
+        curl --request POST \
+        --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.event.workflow_run.head_commit.id }} \
+        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+        --header 'content-type: application/json' \
+        --data '{
+          "state": "fail",
+          "context": "jamestest/cicd-testing",
+          "description": "My Description: ${{ github.event.workflow_run.conclusion }}",
+          "target_url": "${{ github.event.workflow_run.html_url }}"
+          }'
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
