@@ -17,6 +17,9 @@ on:
         required: true
   pull_request:
     types: [opened, synchronize, reopened, closed]
+  push:
+    branches:
+      - master
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
