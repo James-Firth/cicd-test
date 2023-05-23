@@ -2,5 +2,4 @@
 For testing CI/CD platforms
 
 
-## Notes
-Trying out Codeship
+NO ENV VARS
