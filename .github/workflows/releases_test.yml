@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: Logging
         run: |
-          echo "URL ${{github.event.release.release.url}} || html url ${{github.event.release.release.html_url}} || EVENT ${{ github.event.release }}"
+          echo "URL ${{github.event.release.url}} || html url ${{github.event.release.html_url}} || EVENT ${{ github.event.release }}"
